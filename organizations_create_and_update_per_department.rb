@@ -6,7 +6,7 @@
 
 User.where.not(department: "").each do |u|
     # Update for Zammad version 6.5.2 because User table reference to Organization changed to u.organization_id
-    existingOrg = Organization.find_by(name: u.organization_id)
+    existingOrg = Organization.find_by(id: u.organization_id)
 
     next if u.department == existingOrg&.name
     puts "Found User '#{u.fullname}' with department '#{u.department}' and Organization '#{existingOrg&.name}'. Going to update:"
